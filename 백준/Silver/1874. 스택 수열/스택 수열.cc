@@ -11,18 +11,15 @@ int main() {
     while (c--) {
         cin >> a;
         while (s.empty()  || s.top() < a) {
-            b++;
-            s.push(b);
+            s.push(++b);
             str += "+\n";
         }
-        if (a == s.top()) {
-            s.pop();
-            str += "-\n";
-        }
-        else {
+        if (a != s.top()) {
             cout << "NO";
             return 0;
         }
+        s.pop();
+        str += "-\n";
     }
     cout << str;
 }

@@ -6,7 +6,7 @@ bool solution(string s)
 {
     int p=0, y=0;
     for(int i=0; i<s.length(); i++) {
-        switch(s.at(i)) {
+        switch(s[i]) {
             case 'p': case 'P':
                 p++;
                 break;
@@ -14,5 +14,5 @@ bool solution(string s)
                 y++;
         }
     }
-    return (p==y) ? true : false;
+    return p==y;
 }

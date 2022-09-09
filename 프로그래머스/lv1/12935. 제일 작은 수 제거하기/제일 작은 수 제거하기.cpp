@@ -5,8 +5,8 @@
 using namespace std;
 
 vector<int> solution(vector<int> arr) {
-    arr.erase(remove(arr.begin(), arr.end(), *min_element(arr.begin(), arr.end())),arr.end());
-    if(arr.size())
-        return arr;
-    return vector<int>{-1};
+    if(arr.size() == 1)
+        return {-1};
+    arr.erase(min_element(arr.begin(), arr.end()));
+    return arr;
 }

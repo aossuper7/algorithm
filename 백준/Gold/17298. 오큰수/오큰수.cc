@@ -7,24 +7,23 @@ int main() {
 	stack<int> s;
 	int n;
 	cin >> n;
-	vector<int> A(n);
-	vector<int> ans(n);
+	vector<int> A(n), NGE(n);
 	for (int i = 0; i < n; i++)
 		cin >> A[i];
 
 	s.push(0);
 	for (int i = 1; i < n; i++) {
-		if (s.empty()) s.push(i);
 		while (!s.empty() && A[s.top()] < A[i]) {
-			ans[s.top()] = A[i];
+			NGE[s.top()] = A[i];
 			s.pop();
 		}
 		s.push(i);
 	}
 	while (!s.empty()) {
-		ans[s.top()] = -1;
+		NGE[s.top()] = -1;
 		s.pop();
 	}
-	for (int i = 0; i < n; i++)
-		cout << ans[i] << ' ';
+	for (int i = 0; i < n; i++) {
+		cout << NGE[i] << ' ';
+	}
 }

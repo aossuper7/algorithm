@@ -5,33 +5,34 @@ using namespace std;
 int main() {
 	ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
 	string str;
-	int i;
 	while (1) {
 		stack<char> s;
+		int i = 0;
 		getline(cin, str);
 
-		if (str[0] == '.')
+		if (str == ".")
 			break;
 
-		for (i = 0; i < str.size(); i++) {
-			char ch = str[i];
+		for (char ch : str) {
 			if (ch == '(' || ch == '[')
 				s.push(ch);
 			else if (ch == ')') {
-				if (!s.empty() && s.top() == '(')
-					s.pop();
-				else
+				if (s.empty() || s.top() != '(') {
+					i++;
 					break;
+				}
+				s.pop();
 			}
 			else if (ch == ']') {
-				if (!s.empty() && s.top() == '[')
-					s.pop();
-				else
+				if (s.empty() || s.top() != '[') {
+					i++;
 					break;
+				}
+				s.pop();
 			}
 		}
-		if (i == str.size() && s.empty())
-			cout << "yes\n";
-		else cout << "no\n";
+		if (!s.empty())
+			i++;
+		cout << (i >= 1 ? "no" : "yes") << '\n';
 	}
 }

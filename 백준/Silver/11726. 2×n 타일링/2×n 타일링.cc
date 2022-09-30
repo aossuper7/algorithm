@@ -3,19 +3,14 @@ using namespace std;
 
 int d[1001];
 
-int go(int n) {
-	if (n <= 1) 
-		return 1;
-	if (d[n] > 0)
-		return d[n];
-	d[n] = go(n - 1) + go(n-2);
-	d[n] %= 10007;
-	return d[n];
-}
-
 int main() {
 	ios_base::sync_with_stdio(false); cin.tie(nullptr); cout.tie(nullptr);
 	int n;
 	cin >> n;
-	cout << go(n) << '\n';
+	d[0] = d[1] = 1;
+	for (int i = 2; i <= n; i++) {
+		d[i] = d[i - 1] + d[i - 2];
+		d[i] %= 10007;
+	}
+	cout << d[n];
 }
